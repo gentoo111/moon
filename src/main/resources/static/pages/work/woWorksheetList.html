@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+</head>
+<body>
+    <div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div>
+                <header style="height: 100%">
+                    <div align="left">
+	                    <table style="width: 100%">
+	                   		<tr>
+	                   			<td>
+		                   			<form class="form-inline" onsubmit="return false">
+										<div class="form-group">
+											id：
+											<input id="id" type="text" class="form-control" placeholder="id">
+											<button id="searchBt" class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe615;</i>搜索</button>
+										</div>
+									</form>
+	                   			</td>
+	                   			<td align="right">
+	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addWoWorksheet.html'">
+                                      <i class="layui-icon">&#xe608;</i> 添加
+                                    </button>
+	                   			</td>
+	                   		</tr> 
+	                    </table>
+					</div>
+                </header>
+                
+                <div>
+                    <div class="widget-body no-padding">
+                        <table id="dt-table" class="table table-striped table-bordered table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                </tr>                       
+                                <tr>
+									<th>id</th>
+									<th>workNo</th>
+									<th>snNo</th>
+									<th>woNo</th>
+									<th>pmId</th>
+									<th>engineerId</th>
+									<th>woClassifyMain</th>
+									<th>woClassifyDetail</th>
+									<th>woStatus</th>
+									<th>woType</th>
+									<th>serviceType</th>
+									<th>service</th>
+									<th>serviceStation</th>
+									<th>woGrade</th>
+									<th>woClient</th>
+									<th>woClientStation</th>
+									<th>woDeviceId</th>
+									<th>description</th>
+									<th>projectId</th>
+									<th>templateId</th>
+									<th>advComTime</th>
+									<th>totalCostTime</th>
+									<th>beginTime</th>
+									<th>isIndependent</th>
+									<th>assitBy</th>
+									<th>needAssitReason</th>
+									<th>remarks</th>
+									<th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="../../js/my/permission.js"></script>
+<script type="text/javascript">
+var pers = checkPermission();
+
+var example;
+function init(){
+	example = 
+    	$('#dt-table').DataTable({
+        	"searching": false,
+        	"processing": false,
+        	"serverSide" : true,
+        	"ajax": {
+        		"url" : "/woWorksheets",
+        		"type":"get",
+        		"data":function(d){
+    				d.id = $("#id").val();
+    			}
+        	},
+        	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",	
+            "columns": [
+				{"data" : "id", "defaultContent" : ""},
+				{"data" : "workNo", "defaultContent" : ""},
+				{"data" : "snNo", "defaultContent" : ""},
+				{"data" : "woNo", "defaultContent" : ""},
+				{"data" : "pmId", "defaultContent" : ""},
+				{"data" : "engineerId", "defaultContent" : ""},
+				{"data" : "woClassifyMain", "defaultContent" : ""},
+				{"data" : "woClassifyDetail", "defaultContent" : ""},
+				{"data" : "woStatus", "defaultContent" : ""},
+				{"data" : "woType", "defaultContent" : ""},
+				{"data" : "serviceType", "defaultContent" : ""},
+				{"data" : "service", "defaultContent" : ""},
+				{"data" : "serviceStation", "defaultContent" : ""},
+				{"data" : "woGrade", "defaultContent" : ""},
+				{"data" : "woClient", "defaultContent" : ""},
+				{"data" : "woClientStation", "defaultContent" : ""},
+				{"data" : "woDeviceId", "defaultContent" : ""},
+				{"data" : "description", "defaultContent" : ""},
+				{"data" : "projectId", "defaultContent" : ""},
+				{"data" : "templateId", "defaultContent" : ""},
+				{"data" : "advComTime", "defaultContent" : ""},
+				{"data" : "totalCostTime", "defaultContent" : ""},
+				{"data" : "beginTime", "defaultContent" : ""},
+				{"data" : "isIndependent", "defaultContent" : ""},
+				{"data" : "assitBy", "defaultContent" : ""},
+				{"data" : "needAssitReason", "defaultContent" : ""},
+				{"data" : "remarks", "defaultContent" : ""},
+				{ 
+								"data": "", 
+								"defaultContent": "",
+								"orderable":false,
+						        "render": function (data, type, row) {
+                		           var id = row['id'];
+                		           var href = "updateWoWorksheet.html?id=" + id;
+                                   var edit = buttonEdit(href, "", pers);
+                		           var del = buttonDel(id, "", pers);
+                                   return edit + del;
+                  	            }		
+							},
+                
+            ],
+           "order": [[ 0, "asc" ]]
+        } );
+}
+
+layui.use('layer', function(){
+    var layer = layui.layer;
+});
+
+function del(id){
+	layer.confirm('确定要删除吗？', {
+        btn : [ '确定', '取消' ]
+    }, function() {
+    	$.ajax({
+            type : 'delete',
+            url : '/woWorksheets/'+id,
+            success : function(data) {
+                example.ajax.reload();
+                layer.msg("删除成功");
+            }
+        });
+        
+        layer.close(1);
+    });
+}
+
+$("#searchBt").click(function(){
+	example.ajax.reload();
+});
+
+init();
+</script>

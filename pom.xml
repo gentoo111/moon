@@ -136,6 +136,11 @@
             <artifactId>jsoup</artifactId>
             <version>1.10.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.zw</groupId>
+            <artifactId>boot-backend</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
         <!-- 集群下，启用session共享时，需打开 -->
         <!-- <dependency> <groupId>org.springframework.session</groupId> <artifactId>spring-session</artifactId>
             </dependency> -->

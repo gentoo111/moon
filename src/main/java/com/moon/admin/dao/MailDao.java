@@ -1,7 +1,7 @@
 package com.moon.admin.dao;
 
-import com.moon.admin.model.Mail;
-import com.moon.admin.model.MailTo;
+import com.moon.admin.domain.Mail;
+import com.moon.admin.domain.MailTo;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

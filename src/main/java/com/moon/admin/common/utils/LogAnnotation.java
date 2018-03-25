@@ -1,4 +1,4 @@
-package com.moon.admin.annotation;
+package com.moon.admin.common.utils;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

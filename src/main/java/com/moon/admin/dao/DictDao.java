@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
-import com.moon.admin.model.Dict;
+import com.moon.admin.domain.Dict;
 
 /**
  * Created by szz on 2018/3/24 0:03.

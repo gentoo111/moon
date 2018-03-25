@@ -1,19 +1,15 @@
-package com.moon.admin.advice;
+package com.moon.admin.common.utils;
 
-import com.moon.admin.annotation.LogAnnotation;
-import com.moon.admin.model.SysLogs;
+import com.moon.admin.domain.SysLogs;
 import com.moon.admin.service.SysLogService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.lang.annotation.Annotation;
 
 /**
  * Created by szz on 2018/3/24 17:03.
@@ -27,7 +23,7 @@ public class LogAdvice {
     @Autowired
     private SysLogService sysLogService;
 
-    @Around(value = "@annotation(com.moon.admin.annotation.LogAnnotation)")
+    @Around(value = "@annotation(com.moon.admin.common.utils.LogAnnotation)")
     public Object logSave(ProceedingJoinPoint joinPoint) throws Throwable {
         SysLogs sysLogs = new SysLogs();
 

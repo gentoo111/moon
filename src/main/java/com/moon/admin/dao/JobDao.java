@@ -1,6 +1,6 @@
 package com.moon.admin.dao;
 
-import com.moon.admin.model.JobModel;
+import com.moon.admin.domain.JobModel;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

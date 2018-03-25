@@ -1,4 +1,4 @@
-package com.moon.admin.constants;
+package com.moon.admin.common.constants;
 
 /**
  * Created by szz on 2018/3/24 16:16.

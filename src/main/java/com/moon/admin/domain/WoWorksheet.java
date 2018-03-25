@@ -1,4 +1,4 @@
-package com.moon.admin.model;
+package com.moon.admin.domain;
 
 import java.util.Date;
 

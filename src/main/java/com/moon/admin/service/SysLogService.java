@@ -1,6 +1,6 @@
 package com.moon.admin.service;
 
-import com.moon.admin.model.SysLogs;
+import com.moon.admin.domain.SysLogs;
 
 /**
  * Created by szz on 2018/3/24 17:05.

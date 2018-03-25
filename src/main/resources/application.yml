@@ -41,7 +41,7 @@ spring:
     protocol: smtp
     test-connection: false
 mybatis:
-  type-aliases-package: com.moon.admin.model
+  type-aliases-package: com.moon.admin.domain
   mapper-locations: classpath:/mybatis-mappers/*
   configuration:
     mapUnderscoreToCamelCase: true

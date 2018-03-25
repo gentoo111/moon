@@ -1,4 +1,4 @@
-package com.moon.admin.model;
+package com.moon.admin.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;

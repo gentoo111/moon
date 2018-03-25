@@ -1,6 +1,6 @@
 package com.moon.admin.dao;
 
-import com.moon.admin.model.SysLogs;
+import com.moon.admin.domain.SysLogs;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

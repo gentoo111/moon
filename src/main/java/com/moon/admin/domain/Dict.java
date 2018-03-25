@@ -1,6 +1,4 @@
-package com.moon.admin.model;
-
-import com.sun.mail.imap.protocol.ID;
+package com.moon.admin.domain;
 
 /**
  * Created by szz on 2018/3/23 23:35.

@@ -1,6 +1,6 @@
-package com.moon.admin.advice;
+package com.moon.admin.common.utils;
 
-import com.moon.admin.dto.ResponseInfo;
+import com.moon.admin.vo.ResponseInfo;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.UnauthorizedException;

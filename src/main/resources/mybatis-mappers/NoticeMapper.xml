@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.moon.admin.dao.NoticeDao">
+<mapper namespace="com.moon.admin.domain.NoticeDao">
 
 	<sql id="where">
 		<where>
@@ -75,7 +75,7 @@
 		<include refid="whereNotice" />
 	</select>
 
-	<select id="listNotice" resultType="com.moon.admin.dto.NoticeReadVO">
+	<select id="listNotice" resultType="com.moon.admin.vo.NoticeReadVO">
 		select t.*,r.createTime readTime,
 		if(r.createTime is null, 0, 1)
 		isRead,r.userId

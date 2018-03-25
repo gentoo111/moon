@@ -1,6 +1,6 @@
-package com.moon.admin.dto;
+package com.moon.admin.vo;
 
-import com.moon.admin.model.Notice;
+import com.moon.admin.domain.Notice;
 
 import java.util.Date;
 

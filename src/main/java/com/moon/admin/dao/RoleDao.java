@@ -1,6 +1,6 @@
 package com.moon.admin.dao;
 
-import com.moon.admin.model.Role;
+import com.moon.admin.domain.Role;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.moon.admin.dao;
 
-import com.moon.admin.model.FileInfo;
+import com.moon.admin.domain.FileInfo;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

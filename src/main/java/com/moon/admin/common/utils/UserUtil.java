@@ -1,7 +1,7 @@
-package com.moon.admin.utils;
+package com.moon.admin.common.utils;
 
-import com.moon.admin.constants.UserConstants;
-import com.moon.admin.model.User;
+import com.moon.admin.common.constants.UserConstants;
+import com.moon.admin.domain.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.Permission;
 import org.apache.shiro.session.Session;
@@ -19,7 +19,7 @@ public class UserUtil {
        return  (User)getSession().getAttribute(UserConstants.LOGIN_USER);
     }
 
-    public static void serUserSession(User user){
+    public static void setUserSession(User user){
         getSession().setAttribute(UserConstants.LOGIN_TOKEN,user);
     }
 

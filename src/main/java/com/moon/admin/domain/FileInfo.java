@@ -1,7 +1,5 @@
-package com.moon.admin.model;
+package com.moon.admin.domain;
 
-
-import org.springframework.data.annotation.Id;
 
 /**
  * Created by szz on 2018/3/23 23:37.

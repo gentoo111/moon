@@ -1,4 +1,4 @@
-package com.moon.admin.dto;
+package com.moon.admin.vo;
 
 import java.io.Serializable;
 

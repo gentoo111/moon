@@ -1,9 +1,9 @@
 package com.moon.admin.dao;
 
-import com.moon.admin.model.Notice;
-import com.moon.admin.model.User;
+import com.moon.admin.domain.Notice;
+import com.moon.admin.domain.User;
 import org.apache.ibatis.annotations.*;
-import com.moon.admin.dto.NoticeReadVO;
+import com.moon.admin.vo.NoticeReadVO;
 
 import java.util.List;
 import java.util.Map;

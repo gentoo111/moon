@@ -1,9 +1,9 @@
 package com.moon.admin.common.utils;
 
 import com.moon.admin.common.constants.UserConstants;
+import com.moon.admin.domain.Permission;
 import com.moon.admin.domain.User;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.Permission;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 

@@ -6,6 +6,7 @@ package com.moon.admin.common.constants;
  * 用户相关的常量
  */
 public interface UserConstants {
+
     /** 加密次数 */
     int HASH_ITERATIONS = 3;
 

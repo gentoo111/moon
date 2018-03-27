@@ -141,6 +141,12 @@
             <artifactId>boot-backend</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!-- 集群下，启用session共享时，需打开 -->
         <!-- <dependency> <groupId>org.springframework.session</groupId> <artifactId>spring-session</artifactId>
             </dependency> -->
@@ -152,6 +158,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
     </build>

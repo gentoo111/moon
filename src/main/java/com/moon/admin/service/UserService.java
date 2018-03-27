@@ -10,4 +10,6 @@ public interface UserService {
     User getUser(String username);
 
     String passwordEncoder(String credentials, String salt);
+
+    User getById(Long id);
 }

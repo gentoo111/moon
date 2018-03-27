@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
         SimpleHash simpleHash = new SimpleHash("MD5", credentials, salt, UserConstants.HASH_ITERATIONS);
         return simpleHash.toString();
     }
+
+    @Override
+    public User getById(Long id) {
+        return userDao.getById(id);
+    }
 }

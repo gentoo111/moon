@@ -136,11 +136,6 @@
             <artifactId>jsoup</artifactId>
             <version>1.10.3</version>
         </dependency>
-        <dependency>
-            <groupId>com.zw</groupId>
-            <artifactId>boot-backend</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
         <!--热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -150,6 +145,18 @@
         <!-- 集群下，启用session共享时，需打开 -->
         <!-- <dependency> <groupId>org.springframework.session</groupId> <artifactId>spring-session</artifactId>
             </dependency> -->
+
+        <!--Storm-->
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-core</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
     </dependencies>
 
 

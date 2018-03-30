@@ -26,6 +26,7 @@ import java.util.Random;
  *
  * storm的wordcount案例
  */
+@SuppressWarnings("all")
 public class WordCountTopology {
 
     /**
@@ -55,7 +56,6 @@ public class WordCountTopology {
          * 比如说，创建一个线程池，或者创建一个数据库连接池，或者构造一个httpclient
          *
          */
-        @SuppressWarnings("rawtypes")
         public void open(Map conf, TopologyContext context,
                          SpoutOutputCollector collector) {
             // 在open方法初始化的时候，会传入进来一个东西，叫做SpoutOutputCollector

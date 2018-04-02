@@ -25,6 +25,7 @@ import org.apache.http.util.EntityUtils;
  * HttpClient工具类
  * Created by szz on 2018/4/2 17:30.
  * Email szhz186@gmail.com
+ *
  */
 @SuppressWarnings("deprecation")
 public class HttpClientUtils {

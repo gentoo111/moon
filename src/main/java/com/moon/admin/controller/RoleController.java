@@ -2,6 +2,7 @@ package com.moon.admin.controller;
 
 import com.google.common.collect.Maps;
 import com.moon.admin.common.utils.LogAnnotation;
+import com.moon.admin.dao.RoleDao;
 import com.moon.admin.domain.Role;
 import com.moon.admin.service.RoleService;
 import com.moon.admin.vo.RoleVO;
@@ -32,55 +33,58 @@ public class RoleController {
     @GetMapping
     @ApiOperation(value = "角色列表")
     @RequiresPermissions("sys:role:query")
-    public PageTableResponse listRoles(PageTableRequest request){
+    public PageTableResponse listRoles(PageTableRequest request) {
         return new PageTableHandler(new PageTableHandler.CountHandler() {
+
             @Override
             public int count(PageTableRequest request) {
                 return roleService.count(request.getParams());
             }
         }, new PageTableHandler.ListHandler() {
+
             @Override
-            public List<?> list(PageTableRequest request) {
-                return roleService.list(request.getParams(),request.getOffset(),request.getLimit());
+            public List<Role> list(PageTableRequest request) {
+                List<Role> list = roleService.list(request.getParams(), request.getOffset(), request.getLimit());
+                return list;
             }
         }).handle(request);
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "根据id获取角色")
-    @RequiresPermissions(("sys:role:query"))
-    public Role getById(@PathVariable Long id){
+    @RequiresPermissions("sys:role:query")
+    public Role get(@PathVariable Long id) {
         return roleService.getById(id);
     }
 
     @GetMapping("/all")
     @ApiOperation(value = "所有角色")
-    @RequiresPermissions(value = {"sys:user:query","sys:role:query"},logical = Logical.OR)
-    public List<Role> roles(){
-        return roleService.list(Maps.newHashMap(),null,null);
+    @RequiresPermissions(value = { "sys:user:query", "sys:role:query" }, logical = Logical.OR)
+    public List<Role> roles() {
+        return roleService.list(Maps.newHashMap(), null, null);
     }
 
     @GetMapping(params = "userId")
     @ApiOperation(value = "根据用户id获取拥有的角色")
-    @RequiresPermissions(value = {"sys:user:query","sys:role:query"},logical = Logical.OR)
-    public List<Role> rOles(Long userId){
+    @RequiresPermissions(value = { "sys:user:query", "sys:role:query" }, logical = Logical.OR)
+    public List<Role> roles(Long userId) {
         return roleService.listByUserId(userId);
     }
 
     @LogAnnotation
     @PostMapping
-    @ApiOperation("保存角色")
+    @ApiOperation(value = "保存角色")
     @RequiresPermissions("sys:role:add")
-    public void saveRole(@RequestBody RoleVO roleVO){
+    public void saveRole(@RequestBody RoleVO roleVO) {
         roleService.saveRole(roleVO);
     }
 
     @LogAnnotation
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除角色")
-    @RequiresPermissions("sys:role:del")
-    public void deleteRole(@PathVariable Long id){
-        roleService.delete(id);
+    @RequiresPermissions(value = { "sys:role:del" })
+    public void delete(@PathVariable Long id) {
+        roleService.deleteRole(id);
     }
-
 }
+

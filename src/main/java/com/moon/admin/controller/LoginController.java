@@ -3,7 +3,7 @@ package com.moon.admin.controller;
 import com.moon.admin.common.utils.LogAnnotation;
 import com.moon.admin.common.utils.UserUtil;
 import com.moon.admin.domain.User;
-import com.moon.admin.service.TokenManeger;
+import com.moon.admin.service.TokenManager;
 import com.moon.admin.vo.Token;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @Autowired
-    private TokenManeger tokenManeger;
+    private TokenManager tokenManeger;
 
 
     @LogAnnotation

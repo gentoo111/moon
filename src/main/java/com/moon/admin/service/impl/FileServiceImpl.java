@@ -9,11 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ClassUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by szz on 2018/3/30 11:28.
@@ -47,16 +50,18 @@ public class FileServiceImpl implements FileService {
 
         fileOrigName = fileOrigName.substring(fileOrigName.lastIndexOf("."));
 
-        //String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+        //String path2 = ClassUtils.getDefaultClassLoader().getResource("").getPath();
         //获取根目录
-        File path = new File(ResourceUtils.getURL("classpath:").getPath());
-        if (!path.exists()) path = new File("");
-        System.out.println("path:" + path.getAbsolutePath());
 
+        File path = new File(ResourceUtils.getURL("classpath:").getPath());
+//        if (!path.exists()) {
+//            path = new File("");
+//        }
         //如果上传目录为/static/images/upload/，则可以如下获取：
         File upload = new File(path.getAbsolutePath(), "static/images/upload/");
-        if (!upload.exists()) upload.mkdirs();
-        System.out.println("upload url:" + upload.getAbsolutePath());
+        if (!upload.exists()){
+            upload.mkdirs();
+        }
         //在开发测试模式时，得到的地址为：{项目根目录}/target/static/images/upload/
         //在打包成jar正式发布时，得到的地址为：{发布jar包目录}/static/images/upload/
         String absolutePath = upload.getAbsolutePath();
@@ -81,5 +86,21 @@ public class FileServiceImpl implements FileService {
         LOGGER.debug("上传文件{}", fullPath);
 
         return fileInfo;
+    }
+
+
+    @Override
+    public void delete(String id) {
+        fileInfoDao.delete(id);
+    }
+
+    @Override
+    public int count(Map<String, Object> params) {
+        return fileInfoDao.count(params);
+    }
+
+    @Override
+    public List<FileInfo> list(Map<String, Object> params, Integer offset, Integer limit) {
+        return fileInfoDao.list(params,offset,limit);
     }
 }

@@ -4,6 +4,8 @@ import com.moon.admin.dao.RoleDao;
 import com.moon.admin.domain.Role;
 import com.moon.admin.service.RoleService;
 import com.moon.admin.vo.RoleVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ import java.util.Map;
  */
 @Service
 public class RoleServiceImpl implements RoleService {
-
+    private static final Logger log = LoggerFactory.getLogger("adminLogger");
     @Autowired
     private RoleDao roleDao;
 
@@ -48,5 +50,14 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void saveRole(RoleVO roleVO) {
         roleDao.save(roleVO);
+    }
+
+    @Override
+    public void deleteRole(Long id) {
+        roleDao.deleteRolePermission(id);
+        roleDao.deleteRoleUser(id);
+        roleDao.delete(id);
+
+        log.debug("删除角色id:{}", id);
     }
 }

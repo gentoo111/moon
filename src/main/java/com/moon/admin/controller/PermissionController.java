@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.moon.admin.common.utils.LogAnnotation;
 import com.moon.admin.common.utils.UserUtil;
+import com.moon.admin.dao.PermissionDao;
 import com.moon.admin.domain.Permission;
 import com.moon.admin.domain.User;
 import com.moon.admin.service.PermissionService;
@@ -38,92 +39,106 @@ public class PermissionController {
 
     @ApiOperation(value = "当前登录用户拥有的权限")
     @GetMapping("/current")
-    public List<Permission> permissionCurrent() {
-        List<Permission> currentPermission = UserUtil.getCurrentPermissions();
-        if (currentPermission == null) {
+    public List<Permission> permissionsCurrent() {
+        List<Permission> list = UserUtil.getCurrentPermissions();
+        if (list == null) {
             User user = UserUtil.getCurrentUser();
-            currentPermission = permissionService.listByUserId(user.getId());
-            UserUtil.setPermissionSession(currentPermission);
+            list = permissionService.listByUserId(user.getId());
+            UserUtil.setPermissionSession(list);
         }
+        final List<Permission> permissions = list.stream().filter(l -> l.getType().equals(1))
+                .collect(Collectors.toList());
 
-        final List<Permission> permissions = currentPermission.stream().filter(l -> l.getType().equals(1)).collect(Collectors.toList());
         setChild(permissions);
+
         return permissions.stream().filter(p -> p.getParentId().equals(0L)).collect(Collectors.toList());
     }
 
     private void setChild(List<Permission> permissions) {
-        permissions.parallelStream().forEach(per->{
-            List<Permission> child = permissions.stream().filter(p -> p.getParentId().equals(per.getId())).collect(Collectors.toList());
+        permissions.parallelStream().forEach(per -> {
+            List<Permission> child = permissions.stream().filter(p -> p.getParentId().equals(per.getId()))
+                    .collect(Collectors.toList());
             per.setChild(child);
         });
     }
 
-    @ApiOperation(value = "菜单列表")
-    @GetMapping
-    @RequiresPermissions("sys:menu:query")
-    public List<Permission> permissions(){
-        List<Permission> permissionAll=permissionService.listAll();
-
-        List<Permission> list= Lists.newArrayList();
-        setPermissionList(0L,permissionAll,list);
-
-        return list;
-    }
-
-    private void setPermissionList(Long pId, List<Permission> permissionAll, List<Permission> list) {
-        for (Permission permission : permissionAll) {
-            if (permission.getParentId().equals(pId)){
-                list.add(permission);
-                if (permissionAll.stream().filter(p->p.getParentId().equals(permission.getId())).findAny()!=null){
-                    setPermissionList(permission.getId(),permissionAll,list);
+    /**
+     * 菜单列表
+     *
+     * @param pId
+     * @param permissionsAll
+     * @param list
+     */
+    private void setPermissionsList(Long pId, List<Permission> permissionsAll, List<Permission> list) {
+        for (Permission per : permissionsAll) {
+            if (per.getParentId().equals(pId)) {
+                list.add(per);
+                if (permissionsAll.stream().filter(p -> p.getParentId().equals(per.getId())).findAny() != null) {
+                    setPermissionsList(per.getId(), permissionsAll, list);
                 }
             }
         }
+    }
+
+    @GetMapping
+    @ApiOperation(value = "菜单列表")
+    @RequiresPermissions("sys:menu:query")
+    public List<Permission> permissionsList() {
+        List<Permission> permissionsAll = permissionService.listAll();
+
+        List<Permission> list = Lists.newArrayList();
+        setPermissionsList(0L, permissionsAll, list);
+
+        return list;
     }
 
     @GetMapping("/all")
     @ApiOperation(value = "所有菜单")
     @RequiresPermissions("sys:menu:query")
-    public JSONArray permissionAll(){
-        List<Permission> permissionAll = permissionService.listAll();
+    public JSONArray permissionsAll() {
+        List<Permission> permissionsAll = permissionService.listAll();
         JSONArray array = new JSONArray();
-        setPermissionTree(0L,permissionAll,array);
+        setPermissionsTree(0L, permissionsAll, array);
+
         return array;
-    }
-
-    /**
-     * 菜单树,通过权限表生成菜单,考虑单独做一张menu表来完成
-     * @param pId
-     * @param permissionAll
-     * @param array
-     */
-    private void setPermissionTree(Long pId, List<Permission> permissionAll, JSONArray array) {
-        for (Permission permission : permissionAll) {
-            if (permission.getParentId().equals(pId)){
-                String string = JSONObject.toJSONString(permission);
-                JSONObject parent= (JSONObject) JSONObject.parse(string);
-                array.add(parent);
-
-                if (permissionAll.stream().filter(p->p.getParentId().equals(permission.getId())).findAny()!=null){
-                    JSONArray child = new JSONArray();
-                    parent.put("child",child);
-                    setPermissionTree(permission.getId(),permissionAll,child);
-                }
-            }
-        }
     }
 
     @GetMapping("/parents")
     @ApiOperation(value = "一级菜单")
     @RequiresPermissions("sys:menu:query")
-    public List<Permission> parentMenu(){
-        return permissionService.listParents();
+    public List<Permission> parentMenu() {
+        List<Permission> parents = permissionService.listParents();
+
+        return parents;
+    }
+
+    /**
+     * 菜单树
+     *
+     * @param pId
+     * @param permissionsAll
+     * @param array
+     */
+    private void setPermissionsTree(Long pId, List<Permission> permissionsAll, JSONArray array) {
+        for (Permission per : permissionsAll) {
+            if (per.getParentId().equals(pId)) {
+                String string = JSONObject.toJSONString(per);
+                JSONObject parent = (JSONObject) JSONObject.parse(string);
+                array.add(parent);
+
+                if (permissionsAll.stream().filter(p -> p.getParentId().equals(per.getId())).findAny() != null) {
+                    JSONArray child = new JSONArray();
+                    parent.put("child", child);
+                    setPermissionsTree(per.getId(), permissionsAll, child);
+                }
+            }
+        }
     }
 
     @GetMapping(params = "roleId")
     @ApiOperation(value = "根据角色id获取权限")
-    @RequiresPermissions(value = {"sys:menu:query","sys:role:query"},logical = Logical.OR)
-    public List<Permission> listByRoleId(Long roleId){
+    @RequiresPermissions(value = { "sys:menu:query", "sys:role:query" }, logical = Logical.OR)
+    public List<Permission> listByRoleId(Long roleId) {
         return permissionService.listByRoleId(roleId);
     }
 
@@ -131,14 +146,14 @@ public class PermissionController {
     @PostMapping
     @ApiOperation(value = "保存菜单")
     @RequiresPermissions("sys:menu:add")
-    public void save(@RequestBody Permission permission){
+    public void save(@RequestBody Permission permission) {
         permissionService.save(permission);
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "根据菜单id获取菜单")
     @RequiresPermissions("sys:menu:query")
-    public Permission getById(@PathVariable Long id){
+    public Permission get(@PathVariable Long id) {
         return permissionService.getById(id);
     }
 
@@ -146,26 +161,32 @@ public class PermissionController {
     @PutMapping
     @ApiOperation(value = "修改菜单")
     @RequiresPermissions("sys:menu:add")
-    public void update(@RequestBody Permission permission){
+    public void update(@RequestBody Permission permission) {
         permissionService.update(permission);
     }
 
+    /**
+     * 校验权限
+     *
+     * @return
+     */
     @GetMapping("/owns")
     @ApiOperation(value = "校验当前用户的权限")
-    public Set<String> ownsPermission(){
+    public Set<String> ownsPermission() {
         List<Permission> permissions = UserUtil.getCurrentPermissions();
-        if (CollectionUtils.isEmpty(permissions)){
+        if (CollectionUtils.isEmpty(permissions)) {
             return Collections.emptySet();
         }
 
-        return permissions.parallelStream().filter(p->!StringUtils.isEmpty(p.getPermission())).map(Permission::getPermission).collect(Collectors.toSet());
+        return permissions.parallelStream().filter(p -> !StringUtils.isEmpty(p.getPermission()))
+                .map(Permission::getPermission).collect(Collectors.toSet());
     }
 
     @LogAnnotation
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除菜单")
-    @RequiresPermissions("sys:menu:del")
-    public void delete(@PathVariable Long id){
+    @RequiresPermissions(value = { "sys:menu:del" })
+    public void delete(@PathVariable Long id) {
         permissionService.delete(id);
     }
 }

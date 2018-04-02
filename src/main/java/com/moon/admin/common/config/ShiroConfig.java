@@ -1,6 +1,8 @@
 package com.moon.admin.common.config;
 
 import com.moon.admin.common.constants.UserConstants;
+import com.moon.admin.common.filter.LogoutFilter;
+import com.moon.admin.common.filter.RestfulFilter;
 import com.moon.admin.common.realm.ShiroRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -47,7 +49,13 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setLoginUrl("/login.html");
         shiroFilterFactoryBean.setSuccessUrl("/index.html");
 
+        LogoutFilter logoutFilter = new LogoutFilter();
+        logoutFilter.setRedirectUrl("/login.html");
 
+        RestfulFilter restfulFilter = new RestfulFilter();
+
+        shiroFilterFactoryBean.getFilters().put("authc", restfulFilter);
+        shiroFilterFactoryBean.getFilters().put("logout", logoutFilter);
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
@@ -56,18 +64,18 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager(EhCacheManager cacheManager) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(shiroRealm());
+        securityManager.setRealm(myShiroRealm());
         securityManager.setCacheManager(cacheManager);
 
         return securityManager;
     }
 
     @Bean
-    public ShiroRealm shiroRealm() {
-        ShiroRealm shiroRealm = new ShiroRealm();
-        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+    public ShiroRealm myShiroRealm() {
+        ShiroRealm myShiroRealm = new ShiroRealm();
+        myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
 
-        return shiroRealm;
+        return myShiroRealm;
     }
 
     /**

@@ -26,6 +26,7 @@ import org.apache.http.util.EntityUtils;
  * Created by szz on 2018/4/2 17:30.
  * Email szhz186@gmail.com
  *
+ *
  */
 @SuppressWarnings("deprecation")
 public class HttpClientUtils {

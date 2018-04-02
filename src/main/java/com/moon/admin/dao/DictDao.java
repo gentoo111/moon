@@ -9,7 +9,8 @@ import com.moon.admin.domain.Dict;
 /**
  * Created by szz on 2018/3/24 0:03.
  */
-public interface DictDao {
+@Mapper
+public interface DictDao{
 
     @Select("select * from t_dict t where t.id = #{id}")
     Dict getById(Long id);

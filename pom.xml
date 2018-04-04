@@ -162,6 +162,13 @@
             <artifactId>httpclient</artifactId>
             <version>4.5</version>
         </dependency>
+
+        <!--hystrix限流-->
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-core</artifactId>
+            <version>1.5.12</version>
+        </dependency>
     </dependencies>
 
     <build>

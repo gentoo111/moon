@@ -37,6 +37,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
         String username = usernamePasswordToken.getUsername();
         UserService userService = SpringUtil.getBean(UserService.class);
+
         User user = userService.getUser(username);
         if (user == null) {
             throw new UnknownAccountException("用户名不存在");

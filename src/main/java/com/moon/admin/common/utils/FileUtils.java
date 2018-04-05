@@ -1,97 +1,107 @@
 package com.moon.admin.common.utils;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.time.LocalDate;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.*;
-import java.nio.charset.Charset;
-import java.time.LocalDate;
 
 /**
  * Created by szz on 2018/3/29 23:43.
  * Email szhz186@gmail.com
  */
 public class FileUtils {
-    public static String saveFile(MultipartFile file,String pathname){
-        File targetFile=new File(pathname);
-        if (targetFile.exists()){
-            return pathname;
-        }
-
-        if (!targetFile.getParentFile().exists()){
-            targetFile.getParentFile().mkdirs();
-        }
+    public static String saveFile(MultipartFile file, String pathname) {
         try {
+            File targetFile = new File(pathname);
+            if (targetFile.exists()) {
+                return pathname;
+            }
+
+            if (!targetFile.getParentFile().exists()) {
+                targetFile.getParentFile().mkdirs();
+            }
             file.transferTo(targetFile);
+
             return pathname;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        //代码简洁之道中建议尽量不要返回hull,这里我就返回一个空字符串?
-        return "";
+        return null;
     }
 
     public static boolean deleteFile(String pathname) {
+        File file = new File(pathname);
+        if (file.exists()) {
+            boolean flag = file.delete();
 
-        File file=new File(pathname);
-        if (file.exists()){
-            boolean flag=file.delete();
-            if (flag){
+            if (flag) {
                 File[] files = file.getParentFile().listFiles();
-                if (files==null||files.length==0){
+                if (files == null || files.length == 0) {
                     file.getParentFile().delete();
                 }
             }
+
             return flag;
         }
+
         return false;
     }
 
-    public static String fileMd5(InputStream inputStream){
+    public static String fileMd5(InputStream inputStream) {
         try {
             return DigestUtils.md5Hex(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
-    public static String getPath(){
-        return "/"+ LocalDate.now().toString().replace("-","/")+"/";
+    public static String getPath() {
+        return "/" + LocalDate.now().toString().replace("-", "/") + "/";
     }
 
     /**
-     * 将文本写入文件中
+     * 将文本写入文件
+     *
      * @param value
      * @param path
      */
-    public static void saveTextFile(String value,String path){
-        FileWriter writer=null;
+    public static void saveTextFile(String value, String path) {
+        FileWriter writer = null;
         try {
-            File file=new File(path);
-            if (!file.getParentFile().exists()){
+            File file = new File(path);
+            if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
 
-            writer=new FileWriter(file);
+            writer = new FileWriter(file);
             writer.write(value);
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
-                if (writer!=null){
+                if (writer != null) {
                     writer.close();
                 }
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static String getText(String path){
-        File file=new File(path);
+    public static String getText(String path) {
+        File file = new File(path);
         if (!file.exists()) {
             return null;
         }
@@ -105,22 +115,23 @@ public class FileUtils {
         return null;
     }
 
-    private static String getText(InputStream inputStream) {
-        InputStreamReader inputStreamReader=null;
-        BufferedReader bufferedReader=null;
+    public static String getText(InputStream inputStream) {
+        InputStreamReader isr = null;
+        BufferedReader bufferedReader = null;
         try {
-            inputStreamReader=new InputStreamReader(inputStream, "utf-8");
-            bufferedReader=new BufferedReader(inputStreamReader);
-            StringBuilder builder=new StringBuilder();
+            isr = new InputStreamReader(inputStream, "utf-8");
+            bufferedReader = new BufferedReader(isr);
+            StringBuilder builder = new StringBuilder();
             String string;
-            while ((string=bufferedReader.readLine())!=null){
-                string=string+"\n";
+            while ((string = bufferedReader.readLine()) != null) {
+                string = string + "\n";
+                builder.append(string);
             }
 
             return builder.toString();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (bufferedReader != null) {
                 try {
                     bufferedReader.close();
@@ -128,14 +139,15 @@ public class FileUtils {
                     e.printStackTrace();
                 }
             }
-            if (inputStreamReader != null) {
+            if (isr != null) {
                 try {
-                    inputStreamReader.close();
+                    isr.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+
         return null;
     }
 }

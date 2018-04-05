@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class LayuiFile implements Serializable {
 
-	private static final long serialVersionUID = 35435494737590569L;
 
+	private static final long serialVersionUID = 718373255216332834L;
 	private Integer code;
 	private String msg;
 	private LayuiFileData data;

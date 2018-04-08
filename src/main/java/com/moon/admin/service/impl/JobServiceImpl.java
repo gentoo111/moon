@@ -17,128 +17,129 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by szz on 2018/3/30 15:16.
- * Email szhz186@gmail.com
- */
 @Service
 public class JobServiceImpl implements JobService {
-    private static final Logger log = LoggerFactory.getLogger("adminLogger");
 
-    @Autowired
-    private Scheduler scheduler;
-    @Autowired
-    private ApplicationContext applicationContext;
-    private static final String JOB_DATA_KEY = "JOB_DATA_KEY";
-    @Autowired
-    private JobDao jobDao;
+	private static final Logger log = LoggerFactory.getLogger("adminLogger");
 
-    @Override
-    public void saveJob(JobModel jobModel) {
-        checkJobModel(jobModel);
-        String name = jobModel.getJobName();
+	@Autowired
+	private Scheduler scheduler;
 
-        JobKey jobKey = JobKey.jobKey(name);
-        JobDetail jobDetail = JobBuilder.newJob(SpringBeanJob.class).storeDurably()
-                .withDescription(jobModel.getDescription()).withIdentity(jobKey).build();
+	@Autowired
+	private ApplicationContext applicationContext;
 
-        jobDetail.getJobDataMap().put(JOB_DATA_KEY, jobModel);
+	private static final String JOB_DATA_KEY = "JOB_DATA_KEY";
 
-        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(jobModel.getCron());
-        CronTrigger cronTrigger = TriggerBuilder.newTrigger().withIdentity(name).withSchedule(cronScheduleBuilder)
-                .forJob(jobKey).build();
+	@Autowired
+	private JobDao jobDao;
 
-        try {
-            boolean exists = scheduler.checkExists(jobKey);
-            if (exists) {
-                scheduler.rescheduleJob(new TriggerKey(name), cronTrigger);
-                scheduler.addJob(jobDetail, true);
-            } else {
-                scheduler.scheduleJob(jobDetail, cronTrigger);
-            }
+	@Override
+	public void saveJob(JobModel jobModel) {
+		checkJobModel(jobModel);
+		String name = jobModel.getJobName();
 
-            JobModel model = jobDao.getByName(name);
-            if (model == null) {
-                jobDao.save(jobModel);
-            } else {
-                jobDao.update(jobModel);
-            }
-        } catch (SchedulerException e) {
-            log.error("新增或修改job异常", e);
-        }
-    }
+		JobKey jobKey = JobKey.jobKey(name);
+		JobDetail jobDetail = JobBuilder.newJob(SpringBeanJob.class).storeDurably()
+				.withDescription(jobModel.getDescription()).withIdentity(jobKey).build();
 
-    private void checkJobModel(JobModel jobModel) {
-        String springBeanName = jobModel.getSpringBeanName();
-        boolean flag = applicationContext.containsBean(springBeanName);
-        if (!flag) {
-            throw new IllegalArgumentException("bean：" + springBeanName + "不存在，bean名如userServiceImpl,首字母小写");
-        }
+		jobDetail.getJobDataMap().put(JOB_DATA_KEY, jobModel);
 
-        Object object = applicationContext.getBean(springBeanName);
-        Class<?> clazz = object.getClass();
-        if (AopUtils.isAopProxy(object)) {
-            clazz = clazz.getSuperclass();
-        }
+		CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(jobModel.getCron());
+		CronTrigger cronTrigger = TriggerBuilder.newTrigger().withIdentity(name).withSchedule(cronScheduleBuilder)
+				.forJob(jobKey).build();
 
-        String methodName = jobModel.getMethodName();
-        Method[] methods = clazz.getDeclaredMethods();
+		try {
+			boolean exists = scheduler.checkExists(jobKey);
+			if (exists) {
+				scheduler.rescheduleJob(new TriggerKey(name), cronTrigger);
+				scheduler.addJob(jobDetail, true);
+			} else {
+				scheduler.scheduleJob(jobDetail, cronTrigger);
+			}
 
-        Set<String> names = new HashSet<>();
-        Arrays.asList(methods).parallelStream().forEach(m -> {
-            Class<?>[] classes = m.getParameterTypes();
-            if (classes.length == 0) {
-                names.add(m.getName());
-            }
-        });
+			JobModel model = jobDao.getByName(name);
+			if (model == null) {
+				jobDao.save(jobModel);
+			} else {
+				jobDao.update(jobModel);
+			}
+		} catch (SchedulerException e) {
+			log.error("新增或修改job异常", e);
+		}
+	}
 
-        if (names.size() == 0) {
-            throw new IllegalArgumentException("该bean没有无参方法");
-        }
+	private void checkJobModel(JobModel jobModel) {
+		String springBeanName = jobModel.getSpringBeanName();
+		boolean flag = applicationContext.containsBean(springBeanName);
+		if (!flag) {
+			throw new IllegalArgumentException("bean：" + springBeanName + "不存在，bean名如userServiceImpl,首字母小写");
+		}
 
-        if (!names.contains(methodName)) {
-            throw new IllegalArgumentException("未找到无参方法" + methodName + ",该bean所有方法名为：" + names);
-        }
-    }
+		Object object = applicationContext.getBean(springBeanName);
+		Class<?> clazz = object.getClass();
+		if (AopUtils.isAopProxy(object)) {
+			clazz = clazz.getSuperclass();
+		}
 
-    @Override
-    public void doJob(JobDataMap jobDataMap) {
-        JobModel jobModel = (JobModel) jobDataMap.get(JOB_DATA_KEY);
+		String methodName = jobModel.getMethodName();
+		Method[] methods = clazz.getDeclaredMethods();
 
-        String beanName = jobModel.getSpringBeanName();
-        String methodName = jobModel.getMethodName();
-        Object object = applicationContext.getBean(beanName);
+		Set<String> names = new HashSet<>();
+		Arrays.asList(methods).parallelStream().forEach(m -> {
+			Class<?>[] classes = m.getParameterTypes();
+			if (classes.length == 0) {
+				names.add(m.getName());
+			}
+		});
 
-        try {
-            log.info("job:bean：{}，方法名：{}", beanName, methodName);
-            Method method = object.getClass().getDeclaredMethod(methodName);
-            method.invoke(object);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+		if (names.size() == 0) {
+			throw new IllegalArgumentException("该bean没有无参方法");
+		}
 
-    /**
-     * 删除job
-     *
-     * @throws SchedulerException
-     */
-    @Override
-    public void deleteJob(Long id) throws SchedulerException {
-        JobModel jobModel = jobDao.getById(id);
+		if (!names.contains(methodName)) {
+			throw new IllegalArgumentException("未找到无参方法" + methodName + ",该bean所有方法名为：" + names);
+		}
+	}
 
-        if (jobModel.getIsSysJob() != null && jobModel.getIsSysJob()) {
-            throw new IllegalArgumentException("该job是系统任务，不能删除，因为此job是在代码里初始化的，删除该类job请先确保相关代码已经去除");
-        }
+	@Override
+	public void doJob(JobDataMap jobDataMap) {
+		JobModel jobModel = (JobModel) jobDataMap.get(JOB_DATA_KEY);
 
-        String jobName = jobModel.getJobName();
-        JobKey jobKey = JobKey.jobKey(jobName);
+		String beanName = jobModel.getSpringBeanName();
+		String methodName = jobModel.getMethodName();
+		Object object = applicationContext.getBean(beanName);
 
-        scheduler.pauseJob(jobKey);
-        scheduler.unscheduleJob(new TriggerKey(jobName));
-        scheduler.deleteJob(jobKey);
+		try {
+			log.info("job:bean：{}，方法名：{}", beanName, methodName);
+			Method method = object.getClass().getDeclaredMethod(methodName);
+			method.invoke(object);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-        jobModel.setStatus(0);
-        jobDao.update(jobModel);
-    }
+	/**
+	 * 删除job
+	 * 
+	 * @throws SchedulerException
+	 */
+	@Override
+	public void deleteJob(Long id) throws SchedulerException {
+		JobModel jobModel = jobDao.getById(id);
+
+		if (jobModel.getIsSysJob() != null && jobModel.getIsSysJob()) {
+			throw new IllegalArgumentException("该job是系统任务，不能删除，因为此job是在代码里初始化的，删除该类job请先确保相关代码已经去除");
+		}
+
+		String jobName = jobModel.getJobName();
+		JobKey jobKey = JobKey.jobKey(jobName);
+
+		scheduler.pauseJob(jobKey);
+		scheduler.unscheduleJob(new TriggerKey(jobName));
+		scheduler.deleteJob(jobKey);
+
+		jobModel.setStatus(0);
+		jobDao.update(jobModel);
+	}
+
 }

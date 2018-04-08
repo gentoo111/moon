@@ -5,7 +5,9 @@ package com.moon.admin.domain;
  * Created by szz on 2018/3/23 23:37.
  */
 public class FileInfo extends BaseEntity<String>{
+
     private static final long serialVersionUID = -3436371123262041711L;
+
     private String contentType;
     private Long size;
     private String path;

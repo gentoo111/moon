@@ -3,6 +3,8 @@ package com.moon.admin.common.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.service.Contact;
@@ -12,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {
+public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
     public Docket docket() {
@@ -20,5 +22,13 @@ public class SwaggerConfig {
 				.apiInfo(new ApiInfoBuilder().title("swagger接口文档")
 						.contact(new Contact("szz", "", "17673125001@163.com")).version("1.0").build())
 				.select().paths(PathSelectors.any()).build();
+	}
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("swagger-ui.html")
+				.addResourceLocations("classpath:/META-INF/resources/");
+		registry.addResourceHandler("/webjars*")
+				.addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
 }

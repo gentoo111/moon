@@ -1,51 +1,50 @@
 Manifest-Version: 1.0
-Class-Path: druid-1.1.0.jar spring-boot-starter-tomcat-1.5.8.RELEASE.j
- ar log4j-over-slf4j-1.7.25.jar commons-collections4-4.1.jar slf4j-api
- -1.7.25.jar spring-beans-4.3.12.RELEASE.jar spring-boot-starter-actua
- tor-1.5.8.RELEASE.jar hystrix-core-1.5.12.jar tools.jar reflections-0
- .9.11.jar jsqlparser-0.9.5.jar shiro-spring-1.3.2.jar quartz-2.2.1.ja
- r commons-pool2-2.4.2.jar disruptor-3.3.2.jar spring-web-4.3.12.RELEA
- SE.jar spring-data-redis-1.8.8.RELEASE.jar spring-data-keyvalue-1.2.8
- .RELEASE.jar spring-boot-autoconfigure-1.5.8.RELEASE.jar clojure-1.7.
- 0.jar springfox-spring-web-2.7.0.jar shiro-web-1.3.2.jar spring-webmv
- c-4.3.12.RELEASE.jar spring-plugin-core-1.2.0.RELEASE.jar spring-oxm-
- 4.3.12.RELEASE.jar springfox-swagger2-2.7.0.jar jcl-over-slf4j-1.7.25
- .jar poi-3.16.jar httpclient-4.5.jar jconsole.jar springfox-core-2.7.
- 0.jar pagehelper-5.0.0.jar tomcat-annotations-api-8.5.23.jar validati
- on-api-1.1.0.Final.jar hibernate-validator-5.3.5.Final.jar objenesis-
- 2.1.jar mysql-connector-java-5.1.44.jar commons-codec-1.10.jar spring
- -boot-starter-jdbc-1.5.8.RELEASE.jar mybatis-spring-boot-starter-1.3.
- 1.jar javax.mail-1.5.6.jar minlog-1.3.0.jar log4j-api-2.7.jar jackson
- -annotations-2.8.0.jar log4j-slf4j-impl-2.7.jar tomcat-embed-websocke
- t-8.5.23.jar snakeyaml-1.17.jar javassist-3.21.0-GA.jar HdrHistogram-
- 2.1.9.jar spring-expression-4.3.12.RELEASE.jar spring-boot-starter-lo
- gging-1.5.8.RELEASE.jar log4j-core-2.7.jar jedis-2.9.0.jar shiro-core
- -1.3.2.jar mybatis-spring-boot-autoconfigure-1.3.1.jar commons-lang3-
- 3.5.jar archaius-core-0.4.1.jar jackson-core-2.8.10.jar logback-class
- ic-1.1.11.jar tomcat-embed-el-8.5.23.jar byte-buddy-1.6.14.jar storm-
- core-1.1.0.jar reflectasm-1.10.1.jar activation-1.1.jar tomcat-juli-8
- .5.23.jar spring-jdbc-4.3.12.RELEASE.jar jsoup-1.10.3.jar commons-log
- ging-1.1.1.jar spring-plugin-metadata-1.2.0.RELEASE.jar rxjava-1.2.0.
- jar pagehelper-spring-boot-starter-1.0.0.jar swagger-annotations-1.5.
- 13.jar commons-collections-3.2.2.jar kryo-3.0.3.jar tomcat-embed-core
- -8.5.23.jar aspectjweaver-1.8.11.jar classmate-1.3.4.jar mybatis-3.4.
- 5.jar springfox-spi-2.7.0.jar springfox-bean-validators-2.7.0.jar spr
- ing-context-support-4.3.12.RELEASE.jar commons-collections-3.2.1.jar 
- spring-aop-4.3.12.RELEASE.jar mybatis-spring-1.3.1.jar shiro-ehcache-
- 1.3.2.jar jackson-databind-2.8.10.jar spring-boot-starter-mail-1.5.8.
- RELEASE.jar tomcat-jdbc-8.5.23.jar spring-core-4.3.12.RELEASE.jar com
- mons-lang-2.6.jar springfox-schema-2.7.0.jar ring-cors-0.1.5.jar comm
- ons-beanutils-1.9.3.jar pagehelper-spring-boot-autoconfigure-1.0.0.ja
- r spring-boot-starter-1.5.8.RELEASE.jar logback-core-1.1.11.jar sprin
- g-boot-starter-data-redis-1.5.8.RELEASE.jar springfox-swagger-common-
- 2.7.0.jar jboss-logging-3.3.1.Final.jar spring-boot-actuator-1.5.8.RE
- LEASE.jar spring-tx-4.3.12.RELEASE.jar spring-data-commons-1.13.8.REL
- EASE.jar mapstruct-1.1.0.Final.jar fastjson-1.2.31.jar c3p0-0.9.1.1.j
- ar servlet-api-2.5.jar springfox-swagger-ui-2.7.0.jar spring-boot-1.5
- .8.RELEASE.jar commons-configuration-1.8.jar httpcore-4.4.8.jar ehcac
- he-core-2.5.3.jar spring-context-4.3.12.RELEASE.jar jul-to-slf4j-1.7.
- 25.jar guava-21.0.jar spring-boot-starter-aop-1.5.8.RELEASE.jar asm-5
- .0.3.jar spring-boot-starter-web-1.5.8.RELEASE.jar swagger-models-1.5
- .13.jar
+Class-Path: jackson-databind-2.8.10.jar clojure-1.7.0.jar ring-cors-0.
+ 1.5.jar commons-lang-2.6.jar spring-data-keyvalue-1.2.8.RELEASE.jar s
+ pringfox-spi-2.7.0.jar commons-beanutils-1.9.3.jar jackson-core-2.8.1
+ 0.jar shiro-ehcache-1.3.2.jar rxjava-1.2.0.jar servlet-api-2.5.jar lo
+ g4j-over-slf4j-1.7.25.jar httpclient-4.5.jar jackson-annotations-2.8.
+ 0.jar spring-boot-1.5.8.RELEASE.jar spring-boot-starter-web-1.5.8.REL
+ EASE.jar guava-21.0.jar spring-jdbc-4.3.12.RELEASE.jar mapstruct-1.1.
+ 0.Final.jar spring-beans-4.3.12.RELEASE.jar spring-web-4.3.12.RELEASE
+ .jar springfox-swagger2-2.7.0.jar tomcat-embed-core-8.5.23.jar spring
+ fox-schema-2.7.0.jar slf4j-api-1.7.25.jar springfox-swagger-ui-2.7.0.
+ jar spring-data-commons-1.13.8.RELEASE.jar spring-tx-4.3.12.RELEASE.j
+ ar druid-1.1.0.jar byte-buddy-1.6.14.jar log4j-api-2.7.jar jcl-over-s
+ lf4j-1.7.25.jar commons-pool2-2.4.2.jar disruptor-3.3.2.jar tools.jar
+  c3p0-0.9.1.1.jar jedis-2.9.0.jar snakeyaml-1.17.jar validation-api-1
+ .1.0.Final.jar activation-1.1.jar spring-context-4.3.12.RELEASE.jar j
+ avassist-3.21.0-GA.jar shiro-web-1.3.2.jar jsqlparser-0.9.5.jar pageh
+ elper-spring-boot-autoconfigure-1.0.0.jar tomcat-jdbc-8.5.23.jar jcon
+ sole.jar springfox-core-2.7.0.jar jboss-logging-3.3.1.Final.jar mybat
+ is-spring-boot-starter-1.3.1.jar poi-3.16.jar fastjson-1.2.31.jar tom
+ cat-juli-8.5.23.jar logback-core-1.1.11.jar spring-boot-starter-tomca
+ t-1.5.8.RELEASE.jar spring-aop-4.3.12.RELEASE.jar spring-boot-starter
+ -actuator-1.5.8.RELEASE.jar hibernate-validator-5.3.5.Final.jar quart
+ z-2.2.1.jar swagger-annotations-1.5.13.jar springfox-spring-web-2.7.0
+ .jar spring-plugin-core-1.2.0.RELEASE.jar pagehelper-5.0.0.jar spring
+ -data-redis-1.8.8.RELEASE.jar swagger-models-1.5.13.jar tomcat-embed-
+ websocket-8.5.23.jar shiro-core-1.3.2.jar tomcat-embed-el-8.5.23.jar 
+ springfox-swagger-common-2.7.0.jar spring-boot-starter-1.5.8.RELEASE.
+ jar mybatis-spring-1.3.1.jar log4j-slf4j-impl-2.7.jar aspectjweaver-1
+ .8.11.jar spring-core-4.3.12.RELEASE.jar commons-lang3-3.5.jar reflec
+ tasm-1.10.1.jar httpcore-4.4.8.jar spring-boot-starter-logging-1.5.8.
+ RELEASE.jar mysql-connector-java-5.1.44.jar objenesis-2.1.jar spring-
+ oxm-4.3.12.RELEASE.jar log4j-core-2.7.jar jsoup-1.10.3.jar pagehelper
+ -spring-boot-starter-1.0.0.jar tomcat-annotations-api-8.5.23.jar java
+ x.mail-1.5.6.jar reflections-0.9.11.jar classmate-1.3.4.jar shiro-spr
+ ing-1.3.2.jar spring-boot-starter-mail-1.5.8.RELEASE.jar commons-logg
+ ing-1.1.1.jar spring-boot-starter-aop-1.5.8.RELEASE.jar jul-to-slf4j-
+ 1.7.25.jar spring-expression-4.3.12.RELEASE.jar spring-context-suppor
+ t-4.3.12.RELEASE.jar logback-classic-1.1.11.jar mybatis-spring-boot-a
+ utoconfigure-1.3.1.jar storm-core-1.1.0.jar hystrix-core-1.5.12.jar m
+ inlog-1.3.0.jar asm-5.0.3.jar kryo-3.0.3.jar commons-codec-1.10.jar c
+ ommons-configuration-1.8.jar ehcache-core-2.5.3.jar commons-collectio
+ ns-3.2.1.jar spring-boot-starter-jdbc-1.5.8.RELEASE.jar spring-webmvc
+ -4.3.12.RELEASE.jar mybatis-3.4.5.jar spring-boot-starter-data-redis-
+ 1.5.8.RELEASE.jar archaius-core-0.4.1.jar springfox-bean-validators-2
+ .7.0.jar spring-boot-autoconfigure-1.5.8.RELEASE.jar commons-collecti
+ ons4-4.1.jar spring-boot-actuator-1.5.8.RELEASE.jar spring-plugin-met
+ adata-1.2.0.RELEASE.jar HdrHistogram-2.1.9.jar
 Main-Class: com.moon.ServerApplication
 

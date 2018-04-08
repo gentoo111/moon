@@ -48,7 +48,7 @@ public class ShiroConfig {
 
         shiroFilterFactoryBean.setLoginUrl("/login.html");
         shiroFilterFactoryBean.setSuccessUrl("/index.html");
-
+        shiroFilterFactoryBean.setUnauthorizedUrl("/pages/error/403.html");
         LogoutFilter logoutFilter = new LogoutFilter();
         logoutFilter.setRedirectUrl("/login.html");
 

@@ -1,5 +1,7 @@
-package com.moon.admin;
+package com.moon;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpStatus;
  * Email szhz186@gmail.com
  */
 @SpringBootApplication
+//@MapperScan(basePackages = "com.moon", markerInterface =Mapper.class)
 public class ServerApplication {
 
 	public static void main(String[] args) {
@@ -22,9 +25,9 @@ public class ServerApplication {
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
 
 		return (container -> {
-			ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/401.html");
-			ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404.html");
-			ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
+			ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/pages/error/401.html");
+			ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/pages/error/404.html");
+			ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/pages/error/500.html");
 
 			container.addErrorPages(error401Page, error404Page, error500Page);
 		});

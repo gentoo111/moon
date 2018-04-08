@@ -91,7 +91,14 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public void delete(String id) {
-        fileInfoDao.delete(id);
+        FileInfo fileInfo = fileInfoDao.getById(id);
+        if (fileInfo != null) {
+            String fullPath = fileInfo.getPath();
+            FileUtils.deleteFile(fullPath);
+
+            fileInfoDao.delete(id);
+            LOGGER.debug("删除文件：{}", fileInfo.getPath());
+        }
     }
 
     @Override

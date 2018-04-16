@@ -60,3 +60,9 @@ token:
     seconds: 86400
 server:
   port: 9000
+# PageHelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

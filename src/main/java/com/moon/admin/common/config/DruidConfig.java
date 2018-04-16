@@ -28,11 +28,11 @@ public class DruidConfig {
         log.info("init Druid Servlet Configuration ");
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),
                 "/druid/*");
-        // IP白名单
+        // IP白名单,这种配置方式只能在服务器上监控
         ///servletRegistrationBean.addInitParameter("allow", "127.0.0.1");
         // IP黑名单(共同存在时，deny优先于allow)
 //		servletRegistrationBean.addInitParameter("deny", "192.168.27.26");
-        // 控制台管理用户
+        // 控制台管理用户,通过这样的方式可以进行远程监控
         servletRegistrationBean.addInitParameter("loginUsername", "admin");
         servletRegistrationBean.addInitParameter("loginPassword", "admin");
 //		// 是否能够重置数据 禁用HTML页面上的“Reset All”功能

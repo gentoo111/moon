@@ -31,6 +31,7 @@
         <quartz.version>2.2.1</quartz.version>
         <guava.version>21.0</guava.version>
         <poi.version>3.16</poi.version>
+        <slf4j-api.version>1.7.25</slf4j-api.version>
     </properties>
 
 
@@ -161,6 +162,21 @@
             <artifactId>jsoup</artifactId>
             <version>1.10.3</version>
         </dependency>
+
+        <!-- excel解析 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
+        </dependency>
+
+        <!-- poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+
         <!--热部署-->
         <!--<dependency>-->
         <!--<groupId>org.springframework.boot</groupId>-->

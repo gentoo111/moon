@@ -1,6 +1,8 @@
 package com.moon.admin.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.moon.admin.common.job.SpringBeanJob;
+import com.moon.admin.common.utils.SpringUtil;
 import com.moon.admin.dao.JobDao;
 import com.moon.admin.domain.JobModel;
 import com.moon.admin.service.JobService;
@@ -103,8 +105,14 @@ public class JobServiceImpl implements JobService {
 
 	@Override
 	public void doJob(JobDataMap jobDataMap) {
-		JobModel jobModel = (JobModel) jobDataMap.get(JOB_DATA_KEY);
-
+		Object temp = jobDataMap.get(JOB_DATA_KEY);
+		JobModel jobModel=new JobModel();
+		if (temp instanceof JobModel){
+			jobModel= (JobModel) temp;
+		}else {
+			String string = JSON.toJSON(temp).toString();
+			jobModel = JSON.parseObject(string, JobModel.class);
+		}
 		String beanName = jobModel.getSpringBeanName();
 		String methodName = jobModel.getMethodName();
 		Object object = applicationContext.getBean(beanName);

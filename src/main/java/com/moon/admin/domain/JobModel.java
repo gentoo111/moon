@@ -2,6 +2,11 @@ package com.moon.admin.domain;
 
 public class JobModel extends BaseEntity<Long> {
 	private static final long serialVersionUID = 7840665719244302101L;
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
 	private String jobName;
 
 	private String description;

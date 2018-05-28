@@ -32,7 +32,6 @@ spring:
   redis:
     host: 39.108.88.195
     port: 6379
-    password: redis123456
   mail:
     default-encoding: UTF-8
     host: smtp.163.com

@@ -1,0 +1,26 @@
+2018-07-12 15:23:20.707 [main] INFO  com.beimi.Application - Starting Application on szz with PID 1808 (started by hasee in F:\工作\moon)
+2018-07-12 15:23:20.713 [main] INFO  com.beimi.Application - No active profile set, falling back to default profiles: default
+2018-07-12 15:23:21.121 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.5.Final
+2018-07-12 15:23:21.334 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@41e36e46: startup date [Thu Jul 12 15:23:21 CST 2018]; root of context hierarchy
+2018-07-12 15:23:22.378 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-07-12 15:23:22.558 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-07-12 15:23:22.598 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@41e36e46: startup date [Thu Jul 12 15:23:21 CST 2018]; root of context hierarchy
+2018-07-12 15:25:15.822 [main] INFO  com.beimi.Application - Starting Application on szz with PID 100 (started by hasee in F:\工作\moon)
+2018-07-12 15:25:15.825 [main] INFO  com.beimi.Application - No active profile set, falling back to default profiles: default
+2018-07-12 15:25:16.127 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.5.Final
+2018-07-12 15:25:16.240 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@41e36e46: startup date [Thu Jul 12 15:25:16 CST 2018]; root of context hierarchy
+2018-07-12 15:25:17.639 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-07-12 15:25:18.011 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-07-12 15:25:18.069 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@41e36e46: startup date [Thu Jul 12 15:25:16 CST 2018]; root of context hierarchy
+2018-07-12 15:26:24.683 [main] INFO  com.beimi.Application - Starting Application on szz with PID 7704 (started by hasee in F:\工作\moon)
+2018-07-12 15:26:24.688 [main] INFO  com.beimi.Application - No active profile set, falling back to default profiles: default
+2018-07-12 15:26:24.953 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.5.Final
+2018-07-12 15:26:25.100 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3c407114: startup date [Thu Jul 12 15:26:25 CST 2018]; root of context hierarchy
+2018-07-12 15:26:26.530 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-07-12 15:26:26.754 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-07-12 15:26:27.784 [main] INFO  org.kie.spring.KModuleBeanFactoryPostProcessor - :: BeanFactoryPostProcessor::postProcessBeanFactory called ::
+2018-07-12 15:26:27.839 [main] INFO  o.d.compiler.kie.builder.impl.ClasspathKieProject - Recursed up folders, found and used pom.xml F:\工作\开源项目\beimi\pom.xml
+2018-07-12 15:26:27.840 [main] INFO  org.kie.spring.KModuleBeanFactoryPostProcessor - Found project with releaseId: com.beimi:beimi:0.8.0
+2018-07-12 15:26:28.605 [main] INFO  o.s.b.a.l.AutoConfigurationReportLoggingInitializer - 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.

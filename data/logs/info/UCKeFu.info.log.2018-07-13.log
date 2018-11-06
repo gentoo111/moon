@@ -1,0 +1,7 @@
+2018-07-13 15:17:21.990 [main] INFO  com.beimi.Application - Starting Application on szz with PID 12876 (started by hasee in F:\工作\moon)
+2018-07-13 15:17:21.996 [main] INFO  com.beimi.Application - No active profile set, falling back to default profiles: default
+2018-07-13 15:17:22.729 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.5.Final
+2018-07-13 15:17:22.884 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@41e36e46: startup date [Fri Jul 13 15:17:22 CST 2018]; root of context hierarchy
+2018-07-13 15:17:26.180 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-07-13 15:17:26.432 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-07-13 15:17:26.499 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@41e36e46: startup date [Fri Jul 13 15:17:22 CST 2018]; root of context hierarchy

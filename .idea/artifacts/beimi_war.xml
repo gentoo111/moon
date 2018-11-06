@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="beimi:war">
+    <output-path>$PROJECT_DIR$/../开源项目/beimi/target</output-path>
+    <root id="archive" name="beimi-0.8.0.war">
+      <element id="artifact" artifact-name="beimi:war exploded" />
+    </root>
+  </artifact>
+</component>

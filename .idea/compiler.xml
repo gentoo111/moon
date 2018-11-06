@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="beimi" />
+        <module name="bootdo" />
+        <module name="im" />
+        <module name="RuoYi" />
+        <module name="video" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="beimi" target="1.7" />
+      <module name="bootdo" target="1.8" />
+      <module name="im" target="1.8" />
+      <module name="moon" target="1.8" />
+      <module name="RuoYi" target="1.8" />
+      <module name="spring-boot-pay" target="1.6" />
+      <module name="video" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

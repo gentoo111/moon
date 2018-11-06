@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../学生文档/若依后台管理系统/RuoYi/RuoYi.iml" filepath="$PROJECT_DIR$/../学生文档/若依后台管理系统/RuoYi/RuoYi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../开源项目/beimi/beimi.iml" filepath="$PROJECT_DIR$/../开源项目/beimi/beimi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../开源项目/webappchat/bootdo/bootdo.iml" filepath="$PROJECT_DIR$/../开源项目/webappchat/bootdo/bootdo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../开源项目/anymk/im.iml" filepath="$PROJECT_DIR$/../开源项目/anymk/im.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moon.iml" filepath="$PROJECT_DIR$/moon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../开源项目/any-video-master/video.iml" filepath="$PROJECT_DIR$/../开源项目/any-video-master/video.iml" />
+    </modules>
+  </component>
+</project>
